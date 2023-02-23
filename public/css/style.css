@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3rem;
+    gap: 1rem;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.container figure img {
+    height: 30rem !important;
+    width: 22rem !important;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0px 35px 16px 0px rgba(0, 0, 0, 0.1);
+}
+
+.container figure img:hover {
+    height: 31rem !important;
+    width: 23rem !important;
+}
+
+.title {
+    width: 100% !important;
+    font-size: 5rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 3rem auto;
+    text-shadow: 3px 3px 3px #00000034;
+}
+
+figure figcaption h1 {
+    text-align: center;
+    font-size: 4rem;
+    color: white;
+    position: absolute;
+}
