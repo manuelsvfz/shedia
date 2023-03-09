@@ -22,8 +22,6 @@ class User extends Authenticatable
         'email',
         'password',
         'isAdmin',
-        'favorites_id',
-        'shoppinCart_id',
         'bankData_id'
     ];
 
@@ -45,20 +43,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function favorites()
-    {
-        return $this->hasMany(Clothes::class);
-    }
-    public function shoppinCart()
-    {
-        return $this->hasMany(Clothes::class);
-    }
-
-    public function bills()
-    {
-        return $this->hasMany(Bill::class);
-    }
 
     public function bankData()
     {

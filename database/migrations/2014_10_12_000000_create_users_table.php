@@ -44,6 +44,8 @@ return new class extends Migration
             $table->timestamps();
         });
 
+
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -51,10 +53,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('isAdmin');
-            $table->unsignedBigInteger('favorites_id');
-            $table->foreign('favorites_id')->references('id')->on('clothes');
-            $table->unsignedBigInteger('shoppinCart_id');
-            $table->foreign('shoppinCart_id')->references('id')->on('clothes');
             $table->unsignedBigInteger('bankData_id');
             $table->foreign('bankData_id')->references('id')->on('bank_data');
             $table->rememberToken();
