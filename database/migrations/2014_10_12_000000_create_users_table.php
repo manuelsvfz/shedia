@@ -36,16 +36,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->boolean('isAdmin');
-            $table->rememberToken();
-            $table->timestamps();
-        });
 
         Schema::create('bank_data', function (Blueprint $table) {
             $table->id();
@@ -54,18 +44,23 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->boolean('isAdmin');
             $table->unsignedBigInteger('favorites_id');
             $table->foreign('favorites_id')->references('id')->on('clothes');
             $table->unsignedBigInteger('shoppinCart_id');
             $table->foreign('shoppinCart_id')->references('id')->on('clothes');
             $table->unsignedBigInteger('bankData_id');
             $table->foreign('bankData_id')->references('id')->on('bank_data');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
@@ -74,7 +69,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('clothes');
         Schema::dropIfExists('admins');
-        Schema::dropIfExists('clients');
         Schema::dropIfExists('discounts');
         Schema::dropIfExists('clothes_types');
         Schema::dropIfExists('bank_data');

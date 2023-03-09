@@ -3,6 +3,18 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
+
+        @if (Auth::user()->isAdmin)
+            <button><a href="./clothes">Gestionar Ropa</a></button> <br>
+            <button><a href="./clothestype">Gestionar Tipo de Ropa</a></button> <br>
+            <button><a href="./users">Gestionar Usuarios</a></button> <br>
+            <button><a href="./discounts">Gestionar Descuentos</a></button> <br>
+            <button><a href="./bankdata">Gestionar Datos Bancarios</a></button> <br>
+        @else
+            <button><a href="./favorites">Ver Favoritos</a></button> <br>
+            <button><a href="./shoppinCart">Ver Carrito</a></button> <br>
+        @endif
+
     </x-slot>
 
     <div class="py-12">
@@ -14,4 +26,5 @@
             </div>
         </div>
     </div>
+
 </x-app-layout>

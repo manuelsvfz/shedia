@@ -4,34 +4,59 @@
     padding: 3rem;
     gap: 1rem;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .container figure img {
-    height: 30rem !important;
-    width: 22rem !important;
+    height: 40rem !important;
+    width: 32rem !important;
     cursor: pointer;
     transition: 0.2s;
     box-shadow: 0px 35px 16px 0px rgba(0, 0, 0, 0.1);
 }
 
 .container figure img:hover {
-    height: 31rem !important;
-    width: 23rem !important;
+    height: 41rem !important;
+    width: 33rem !important;
+    box-shadow: 0px 35px 16px 0px rgba(0, 0, 0, 0.205);
 }
 
 .title {
     width: 100% !important;
-    font-size: 5rem;
+    font-size: 10rem;
     font-weight: 700;
     text-align: center;
     margin: 3rem auto;
     text-shadow: 3px 3px 3px #00000034;
 }
 
+figure {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 34rem;
+    height: 42rem;
+}
+
 figure figcaption h1 {
     text-align: center;
     font-size: 4rem;
     color: white;
-    position: absolute;
+    text-shadow: 3px 3px 3px #00000034;
+    transition: 1s;
+}
+
+figure figcaption {
+    position: relative;
+    top: -7rem;
+}
+
+footer {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+    color: rgb(136, 136, 136);
 }

@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\BankDataController;
+use App\Http\Controllers\ClothesController;
+use App\Http\Controllers\ClothesTypeController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +33,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
+Route::get('/clothes', [ClothesController::class, 'index'])->middleware('CheckAdmin');
+Route::get('/clothestype', [ClothesTypeController::class, 'index'])->middleware('CheckAdmin');
+Route::get('/users', [UserController::class, 'index'])->middleware('CheckAdmin');
+Route::get('/discounts', [DiscountController::class, 'index'])->middleware('CheckAdmin');
+Route::get('/bankdata', [BankDataController::class, 'index'])->middleware('CheckAdmin');
+Route::get('/favorites', [UserController::class, 'favoritesIndex']);
+Route::get('/shoppinCart', [UserController::class, 'shoppinCartIndex']);
+
+
+Route::get('/newClothes', [ClothesController::class, 'createView'])->middleware('CheckAdmin');
+Route::get('/newClothesType', [ClothesTypeController::class, 'createView'])->middleware('CheckAdmin');
+
+
+Route::get('/saveClothesType', [ClothesTypeController::class, 'store'])->middleware('CheckAdmin');
+Route::get('/saveClothes', [ClothesController::class, 'store'])->middleware('CheckAdmin');
+require __DIR__ . '/auth.php';
