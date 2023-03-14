@@ -17,12 +17,28 @@ class DiscountController extends Controller
         return view('discount.index', ['discounts' => $discounts]);
     }
 
+    public function createView()
+    {
+        return view('discount.create');
+    }
+
+    public function deleteView($id)
+    {
+        $discount = Discount::find($id);
+        return view('discount.delete', ['discount' => $discount]);
+    }
+
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $discount = new Discount();
+        $discount->name = $request->name;
+        $discount->percentageDiscount = $request->percentageDiscount;
+        $discount->save();
+        return redirect()->to('discounts');
     }
 
     /**
@@ -44,7 +60,10 @@ class DiscountController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Discount $discount)
+    public function destroy($id)
     {
+        $discount = Discount::find($id);
+        $discount->delete();
+        return redirect()->to('discounts');
     }
 }

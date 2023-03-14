@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    width: 100% !important;
+}
+
+.container button a {
+    background-color: #707070 !important;
+    border: none;
+    color: white;
+    padding: 1rem;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.container button a:hover {
+    background-color: #acacac !important;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    width: 100% !important;
+    justify-content: center;
+    padding: 1rem;
+}

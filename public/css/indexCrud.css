@@ -1,0 +1,76 @@
+body {
+    overflow-x: hidden;
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(0, 0, 255, 0.836);
+    color: white !important;
+}
+
+
+button a {
+    text-decoration: none;
+    color: black;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.containerCreate {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem;
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    width: 100%;
+    padding: 1rem;
+    background-color: blue;
+    margin: 0;
+    color: white;
+}
+
+td a {
+    text-decoration: underline !important;
+    color: blue !important;
+    cursor: pointer !important;
+}
+
+tr:nth-child(even) a {
+    color: black !important;
+}
+
+button {
+    background-color: white;
+    border: 0;
+    padding: 0.7rem;
+    border-radius: 10px;
+    border: 1px solid white;
+    color: blue !important;
+}
+
+button a {
+    color: blue !important;
+    border: 0;
+}

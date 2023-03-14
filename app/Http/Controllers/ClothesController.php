@@ -23,6 +23,13 @@ class ClothesController extends Controller
         $clothesType = ClothesType::all();
         return view('clothes.create', ['clothesType' => $clothesType]);
     }
+
+    public function deleteView($id)
+    {
+        $clothes = Clothes::find($id);
+        return view('clothes.delete', ['clothes' => $clothes]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -58,8 +65,10 @@ class ClothesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Clothes $clothes)
+    public function destroy($id)
     {
-        //
+        $clothes = Clothes::find($id);
+        $clothes->delete();
+        return redirect()->to('clothes');
     }
 }

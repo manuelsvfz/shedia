@@ -17,12 +17,26 @@ class BankDataController extends Controller
         return view('bankdata.index', ['bankdatas' => $bankdatas]);
     }
 
+    public function createView()
+    {
+        return view('bankdata.create');
+    }
+
+    public function deleteView($id)
+    {
+        $bankdata = Bankdata::find($id);
+        return view('bankdata.delete', ['bankdata' => $bankdata]);
+    }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $bankdata = new Bankdata();
+        $bankdata->iban = $request->iban;
+        $bankdata->money = $request->money;
+        $bankdata->save();
+        return redirect()->to('bankdata');
     }
 
     /**
@@ -44,8 +58,10 @@ class BankDataController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BankData $bankData)
+    public function destroy($id)
     {
-        //
+        $bankData = BankData::find($id);
+        $bankData->delete();
+        return redirect()->to('bankdata');
     }
 }
