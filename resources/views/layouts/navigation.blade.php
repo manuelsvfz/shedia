@@ -59,10 +59,10 @@
                                 {{ __('Gestionar Datos Bancarios') }}
                             </x-dropdown-link>
                         @else
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('carrito')">
                                 {{ __('Carrito') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('favorites')">
                                 {{ __('Favoritos') }}
                             </x-dropdown-link>
                         @endif

@@ -43,8 +43,8 @@ Route::get('/clothestype', [ClothesTypeController::class, 'index'])->middleware(
 Route::get('/users', [UserController::class, 'index'])->middleware('CheckAdmin');
 Route::get('/discounts', [DiscountController::class, 'index'])->middleware('CheckAdmin');
 Route::get('/bankdata', [BankDataController::class, 'index'])->middleware('CheckAdmin');
-Route::get('/favorites', [UserController::class, 'favoritesIndex']);
-Route::get('/shoppinCart', [UserController::class, 'shoppinCartIndex']);
+Route::get('/favorites', [UserController::class, 'favoritesIndex'])->name('favorites');
+Route::get('/shoppinCart', [UserController::class, 'shoppinCartIndex'])->name('carrito');
 
 
 Route::get('/newClothes', [ClothesController::class, 'createView'])->middleware('CheckAdmin');
