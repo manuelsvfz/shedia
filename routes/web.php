@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'welcome']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -43,8 +43,14 @@ Route::get('/clothestype', [ClothesTypeController::class, 'index'])->middleware(
 Route::get('/users', [UserController::class, 'index'])->middleware('CheckAdmin');
 Route::get('/discounts', [DiscountController::class, 'index'])->middleware('CheckAdmin');
 Route::get('/bankdata', [BankDataController::class, 'index'])->middleware('CheckAdmin');
-Route::get('/favorites', [UserController::class, 'favoritesIndex'])->name('favorites');
-Route::get('/shoppinCart', [UserController::class, 'shoppinCartIndex'])->name('carrito');
+// Route::get('/favorites', [UserController::class, 'favoritesIndex'])->name('favorites');
+Route::get('/favorites/{idClothes}', [UserController::class, 'favoritesIndex']);
+Route::get('/favoritesDelete/{idClothes}', [UserController::class, 'deleteFavorites']);
+
+//Route::get('/shoppinCart', [UserController::class, 'shoppinCartIndex'])->name('carrito');
+Route::get('/shoppinCart/{idClothes}', [UserController::class, 'shoppinCartIndex']);
+Route::get('/shoppinCartDelete/{idClothes}', [UserController::class, 'deleteShoppinCart']);
+
 
 
 Route::get('/newClothes', [ClothesController::class, 'createView'])->middleware('CheckAdmin');
@@ -55,7 +61,7 @@ Route::get('/newBankData', [BankDataController::class, 'createView'])->middlewar
 
 
 Route::get('/saveClothesType', [ClothesTypeController::class, 'store'])->middleware('CheckAdmin');
-Route::get('/saveClothes', [ClothesController::class, 'store'])->middleware('CheckAdmin');
+Route::post('/saveClothes', [ClothesController::class, 'store'])->middleware('CheckAdmin');
 Route::get('/saveUser', [UserController::class, 'store'])->middleware('CheckAdmin');
 Route::get('/saveDisccount', [DiscountController::class, 'store'])->middleware('CheckAdmin');
 Route::get('/saveBankData', [BankDataController::class, 'store'])->middleware('CheckAdmin');
@@ -77,9 +83,8 @@ Route::get('/deleteDisccount/{id}', [DiscountController::class, 'destroy'])->mid
 Route::get('/deleteBankData/{id}', [BankDataController::class, 'destroy'])->middleware('CheckAdmin');
 
 
-Route::get('/Hombre', [ClothesController::class, 'hombre'])->middleware('CheckAdmin');
-Route::get('/Mujer', [ClothesController::class, 'mujer'])->middleware('CheckAdmin');
-Route::get('/Niño', [ClothesController::class, 'niño'])->middleware('CheckAdmin');
+Route::get('/home/{gender}', [HomeController::class, 'index']);
+Route::get('/producto/{idProducto}', [HomeController::class, 'producto']);
 
 
 require __DIR__ . '/auth.php';

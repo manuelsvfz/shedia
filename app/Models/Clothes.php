@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Clothes extends Model
 {
-    protected $fillable = ['clotheType_id', 'size',  'color', 'price', 'gender'];
+    protected $fillable = ['clotheType_id', 'size',  'color', 'price', 'gender', 'image'];
 
     public function clotheType()
     {

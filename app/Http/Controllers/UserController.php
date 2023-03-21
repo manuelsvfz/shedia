@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FavoritesUser;
+use App\Models\ShoppincartUser;
 use App\Models\User;
 use App\Models\Clothes;
+use App\Models\ClothesType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -19,12 +22,47 @@ class UserController extends Controller
         return view('user.index', ['users' => $users]);
     }
 
-    public function favoritesIndex()
+
+    public function shoppinCartIndex($idClothes)
     {
         $actualUser = User::findOrFail(Auth::user()->id);
-        $name = $actualUser->name;
-        $clothes = $actualUser->favorites_id;
-        return view('user.favorites', ['clothes' => $clothes, 'name' => $name]);
+        $clothes = Clothes::findOrFail($idClothes);
+
+        $shoppinCart = new ShoppincartUser();
+        $shoppinCart->idUser = $actualUser->id;
+        $shoppinCart->idClothes = $clothes->id;
+        $shoppinCart->save();
+        return redirect()->to('producto/' . $idClothes);
+    }
+
+    public function deleteShoppinCart($idClothes)
+    {
+        $actualUser = User::findOrFail(Auth::user()->id);
+        $clothes = Clothes::findOrFail($idClothes);
+        $shoppinCart = ShoppincartUser::where('idUser', $actualUser->id)->where('idClothes', $clothes->id)->first();
+
+        $shoppinCart->delete();
+        return redirect()->to('producto/' . $idClothes);
+    }
+
+    public function favoritesIndex($idClothes)
+    {
+        $actualUser = User::findOrFail(Auth::user()->id);
+        $clothes = Clothes::findOrFail($idClothes);
+        $favorite = new FavoritesUser();
+        $favorite->idUser = $actualUser->id;
+        $favorite->idClothes = $clothes->id;
+        $favorite->save();
+        return redirect()->to('producto/' . $idClothes);
+    }
+
+    public function deleteFavorites($idClothes)
+    {
+        $actualUser = User::findOrFail(Auth::user()->id);
+        $clothes = Clothes::findOrFail($idClothes);
+        $favorite = FavoritesUser::where('idUser', $actualUser->id)->where('idClothes', $clothes->id)->first();
+        $favorite->delete();
+        return redirect()->to('producto/' . $idClothes);
     }
 
     public function createView()
@@ -38,13 +76,7 @@ class UserController extends Controller
         return view('user.delete', ['user' => $user]);
     }
 
-    public function shoppinCartIndex()
-    {
-        $actualUser = User::findOrFail(Auth::user()->id);
-        $name = $actualUser->name;
-        $clothes = $actualUser->shoppinCart_id;
-        return view('user.favorites', ['clothes' => $clothes, 'name' => $name]);
-    }
+
     /**
      * Store a newly created resource in storage.
      */

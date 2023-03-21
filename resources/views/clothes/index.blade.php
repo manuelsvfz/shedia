@@ -17,6 +17,7 @@
     <div class="container">
         <table>
             <tr>
+                <td> <b>Image</b> </td>
                 <td> <b>Id</b> </td>
                 <td> <b>Talla</b> </td>
                 <td> <b>Color</b> </td>
@@ -26,6 +27,7 @@
             </tr>
             @foreach ($clothes as $item)
                 <tr>
+                    <td><img src="{{ $item->image }}" alt="" srcset=""></td>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->size }}</td>
                     <td>{{ $item->color }}</td>

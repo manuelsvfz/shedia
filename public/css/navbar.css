@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+.navbar {
+
+    background-color: rgb(243, 244, 246);
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 2px black;
+    border-bottom: 1px solid rgba(207, 207, 207, 0.521);
+
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between !important;
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    padding-right: 3rem !important;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.navbar-menu-item {
+    margin: 0 10px;
+}
+
+.navbar-menu-item a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.navbar-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: rgb(238, 237, 237);
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    text-align: center;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.navbar-dropdown:hover {
+    background-color: rgb(197, 196, 196);
+}
+
+.navbar-dropdown-toggle {
+    font-size: 16px;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.navbar-dropdown-menu {
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.2s linear;
+    /*width: 80%;*/
+    width: 90%;
+    text-align: center;
+}
+
+.navbar-dropdown-menu-item {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.navbar-dropdown-menu-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+.navbar-dropdown-menu-item a:hover {
+    color: #666;
+}
+
+.navbar-dropdown:hover .navbar-dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+}
+
+.navbar-dropdown-toggle {
+    color: black !important;
+}

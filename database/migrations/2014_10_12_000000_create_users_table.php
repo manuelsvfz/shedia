@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('color');
             $table->decimal('price');
             $table->string('gender');
+            $table->string('image');
             $table->timestamps();
         });
 

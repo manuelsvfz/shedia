@@ -1,3 +1,8 @@
+body {
+
+    background-color: rgb(243, 244, 246);
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -48,7 +53,8 @@ figure figcaption h1 {
 
 figure figcaption {
     position: relative;
-    top: -7rem;
+    top: -9rem;
+
 }
 
 footer {

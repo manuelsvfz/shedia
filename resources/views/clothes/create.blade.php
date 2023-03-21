@@ -12,7 +12,13 @@
     <h1>Clothes</h1>
     <h2>New Clothes</h2>
 
-    <form action="./saveClothes" method="GET">
+    <form action="./saveClothes" method="POST" enctype="multipart/form-data">
+        @csrf
+
+        <label for="image">Image</label>
+
+        <input type="file" name="image"> <br><br>
+
         <label for="size">Size: </label>
         <select name="size" id="size">
             <option value="xs">XS</option>
@@ -53,7 +59,6 @@
         <select name="gender" id="gender">
             <option value="male">Hombre</option>
             <option value="female">Mujer</option>
-            <option value="child">Niño</option>
         </select> <br> <br>
 
         <label for="clotheType_id">Tipo De Ropa</label>
@@ -64,6 +69,7 @@
         </select> <br> <br>
 
         <button type="submit">Crear</button>
+
     </form>
 </body>
 

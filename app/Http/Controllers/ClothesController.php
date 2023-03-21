@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Clothes;
 use App\Models\ClothesType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class ClothesController extends Controller
 {
@@ -36,12 +38,18 @@ class ClothesController extends Controller
     public function store(Request $request)
     {
         //size,color,price,gender
+
+        $path = $request->file('image')->store('public');
+
+        $path = str_replace("public/", "/storage/", $path);
+
         $clothes = new Clothes();
         $clothes->clotheType_id = $request->clotheType_id;
         $clothes->size = $request->size;
         $clothes->color = $request->color;
         $clothes->price = $request->price;
         $clothes->gender = $request->gender;
+        $clothes->image = ($path);
         $clothes->save();
         return redirect()->to('clothes');
     }
