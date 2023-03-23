@@ -85,6 +85,8 @@ Route::get('/deleteBankData/{id}', [BankDataController::class, 'destroy'])->midd
 
 Route::get('/home/{gender}', [HomeController::class, 'index']);
 Route::get('/producto/{idProducto}', [HomeController::class, 'producto']);
+Route::get('/user/ShoppinCart', [HomeController::class, 'carritosView']);
+Route::get('/user/Favorites', [HomeController::class, 'favoritesView']);
 
 
 require __DIR__ . '/auth.php';

@@ -25,6 +25,7 @@
             @endforeach
         @endforeach
     </div>
+    <button class="navigationButton"><a href="../">Volver atrás</a></button>
 </body>
 
 </html>

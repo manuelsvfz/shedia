@@ -15,7 +15,7 @@
                     <div>{{ Auth::user()->name }}</div>
                 @endauth
                 @guest
-                    <div>Guest</div>
+                    <div>Invitado</div>
                 @endguest
                 <div></div>
             </div>
@@ -31,8 +31,8 @@
                         <li class="navbar-dropdown-menu-item"> <a href="/discounts">Gestionar Descuentos</a></li>
                         <li class="navbar-dropdown-menu-item"> <a href="/bankdata">Gestionar Datos Bancarios</a></li>
                     @else
-                        <li class="navbar-dropdown-menu-item"> <a href="/shoppinCart">Carrito</a></li>
-                        <li class="navbar-dropdown-menu-item"> <a href="/favorites">Favoritos</a></li>
+                        <li class="navbar-dropdown-menu-item"> <a href="/user/ShoppinCart">Carrito</a></li>
+                        <li class="navbar-dropdown-menu-item"> <a href="/user/Favorites">Favoritos</a></li>
                     @endif
                     <li class="navbar-dropdown-menu-item">
                         <form method="POST" action="{{ route('logout') }}">

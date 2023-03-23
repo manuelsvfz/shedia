@@ -1,0 +1,14 @@
+.navigationButton {
+    text-decoration: none !important;
+    padding: 1rem;
+    background-color: lightgray;
+    border: 1px solid black;
+    color: black !important;
+    width: 15rem;
+    cursor: pointer;
+}
+
+.navigationButton a {
+    text-decoration: none !important;
+    color: black !important;
+}

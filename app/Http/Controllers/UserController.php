@@ -42,7 +42,7 @@ class UserController extends Controller
         $shoppinCart = ShoppincartUser::where('idUser', $actualUser->id)->where('idClothes', $clothes->id)->first();
 
         $shoppinCart->delete();
-        return redirect()->to('producto/' . $idClothes);
+        return redirect()->to('/');
     }
 
     public function favoritesIndex($idClothes)
