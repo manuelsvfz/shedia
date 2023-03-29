@@ -121,3 +121,27 @@ body {
 .navbar-dropdown-toggle {
     color: black !important;
 }
+
+
+.link-menu {
+    /* border: 1px solid black; */
+    position: relative;
+    /* border-radius: 10px; */
+}
+
+.link-menu a {
+    text-decoration: none !important;
+    color: black !important;
+    font-weight: 600;
+    cursor: pointer;
+    border-left: 1px solid rgb(102, 101, 101);
+    border-right: 1px solid rgb(102, 101, 101);
+    padding: 0 3rem;
+    transition: 0.3s;
+}
+
+.link-menu a:hover {
+    /* background-color: #bdbaba;
+    border-color: black; */
+    font-size: x-large;
+}

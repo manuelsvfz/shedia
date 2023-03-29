@@ -1,5 +1,5 @@
 body {
-
+    height: 100vh;
     background-color: rgb(243, 244, 246);
 }
 
@@ -65,4 +65,17 @@ footer {
     width: 100%;
     padding: 1rem;
     color: rgb(136, 136, 136);
+}
+
+footer a {
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1rem;
+    color: black;
+}
+
+footer button {
+    border: none;
+    background-color: transparent;
 }

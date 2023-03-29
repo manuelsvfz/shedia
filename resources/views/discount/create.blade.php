@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    @include('layouts.testnavigation')
     <h1>Descuento</h1>
     <h2>Nuevo Descuento</h2>
 

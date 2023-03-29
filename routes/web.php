@@ -8,7 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\StripePaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,11 +38,11 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/clothes', [ClothesController::class, 'index'])->middleware('CheckAdmin');
-Route::get('/clothestype', [ClothesTypeController::class, 'index'])->middleware('CheckAdmin');
-Route::get('/users', [UserController::class, 'index'])->middleware('CheckAdmin');
-Route::get('/discounts', [DiscountController::class, 'index'])->middleware('CheckAdmin');
-Route::get('/bankdata', [BankDataController::class, 'index'])->middleware('CheckAdmin');
+Route::get('/clothes', [ClothesController::class, 'index'])->middleware('CheckAdmin')->name('clothes');
+Route::get('/clothestype', [ClothesTypeController::class, 'index'])->middleware('CheckAdmin')->name('clothesType');
+Route::get('/users', [UserController::class, 'index'])->middleware('CheckAdmin')->name('users');
+Route::get('/discounts', [DiscountController::class, 'index'])->middleware('CheckAdmin')->name('descuentos');
+Route::get('/bankdata', [BankDataController::class, 'index'])->middleware('CheckAdmin')->name('bankdatas');
 // Route::get('/favorites', [UserController::class, 'favoritesIndex'])->name('favorites');
 Route::get('/favorites/{idClothes}', [UserController::class, 'favoritesIndex']);
 Route::get('/favoritesDelete/{idClothes}', [UserController::class, 'deleteFavorites']);
@@ -83,10 +83,31 @@ Route::get('/deleteDisccount/{id}', [DiscountController::class, 'destroy'])->mid
 Route::get('/deleteBankData/{id}', [BankDataController::class, 'destroy'])->middleware('CheckAdmin');
 
 
+Route::get('/users/edit/{id}', [UserController::class, 'editView'])->middleware('CheckAdmin');
+Route::put('/editUser', [UserController::class, 'edit'])->middleware('CheckAdmin');
+
+Route::get('/clothesType/edit/{id}', [ClothesTypeController::class, 'editView'])->middleware('CheckAdmin');
+Route::put('/editClothesType', [ClothesTypeController::class, 'edit'])->middleware('CheckAdmin');
+
+Route::get('/clothes/edit/{id}', [ClothesController::class, 'editView'])->middleware('CheckAdmin');
+Route::put('/editClothes', [ClothesController::class, 'edit'])->middleware('CheckAdmin');
+
+Route::get('/discount/edit/{id}', [DiscountController::class, 'editView'])->middleware('CheckAdmin');
+Route::put('/editDiscount', [DiscountController::class, 'edit'])->middleware('CheckAdmin');
+
+
+
 Route::get('/home/{gender}', [HomeController::class, 'index']);
 Route::get('/producto/{idProducto}', [HomeController::class, 'producto']);
-Route::get('/user/ShoppinCart', [HomeController::class, 'carritosView']);
-Route::get('/user/Favorites', [HomeController::class, 'favoritesView']);
+Route::get('/user/ShoppinCart', [HomeController::class, 'carritosView'])->name('carrito');
+Route::get('/user/Favorites', [HomeController::class, 'favoritesView'])->name('favorites');
 
+Route::get('/paymentSuccesful', [UserController::class, 'paymentSuccesful'])->name('paymentSuccesful');
+// paymentSuccesful
 
+//Stripe
+Route::controller(StripePaymentController::class)->group(function () {
+    Route::get('stripe/{precio?}', 'stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+});
 require __DIR__ . '/auth.php';

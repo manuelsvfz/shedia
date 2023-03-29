@@ -14,8 +14,8 @@ th, td {
 }
 
 tr:nth-child(even) {
-    background-color: rgba(0, 0, 255, 0.836);
-    color: white !important;
+    background-color: lightgray;
+    color: black !important;
 }
 
 
@@ -46,14 +46,14 @@ button {
 header {
     width: 100%;
     padding: 1rem;
-    background-color: blue;
+    background-color: lightgray;
     margin: 0;
-    color: white;
+    color: black;
 }
 
 td a {
     text-decoration: underline !important;
-    color: blue !important;
+    color: black !important;
     cursor: pointer !important;
 }
 
@@ -67,11 +67,11 @@ button {
     padding: 0.7rem;
     border-radius: 10px;
     border: 1px solid white;
-    color: blue !important;
+    color: black !important;
 }
 
 button a {
-    color: blue !important;
+    color: black !important;
     border: 0;
 }
 

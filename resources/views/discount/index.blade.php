@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    @include('layouts.testnavigation')
     <header>
         <h1>Descuentos </h1>
         <button> <a href="/newDiscount"> Nuevo Descuento </a></button>

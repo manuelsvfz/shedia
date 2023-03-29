@@ -52,29 +52,38 @@ class HomeController extends Controller
 
     public function producto($idProducto)
     {
-        $actualUser = User::findOrFail(Auth::user()->id);
+        if (Auth::user()) {
+            $actualUser = User::findOrFail(Auth::user()->id);
+        }
+
         $clothes = Clothes::findOrFail($idProducto);
         $name = ClothesType::findOrFail($clothes->clotheType_id);
 
-        $userFavorites = FavoritesUser::where('idUser', $actualUser->id)->get();
-        if ($userFavorites != null) {
-            $thisFavorites = $userFavorites->where('idClothes', $clothes->id)->first() != null;
-        } else {
-            $thisFavorites = false;
-        }
+        if (Auth::user() != null) {
+            $userFavorites = FavoritesUser::where('idUser', $actualUser->id)->get();
+            if ($userFavorites != null) {
+                $thisFavorites = $userFavorites->where('idClothes', $clothes->id)->first() != null;
+            } else {
+                $thisFavorites = false;
+            }
 
-        $userShoppinCart = ShoppincartUser::where('idUser', $actualUser->id)->get();
-        if ($userShoppinCart != null) {
-            $thisShoppinCart = $userShoppinCart->where('idClothes', $clothes->id)->first() != null;
+            $userShoppinCart = ShoppincartUser::where('idUser', $actualUser->id)->get();
+            if ($userShoppinCart != null) {
+                $thisShoppinCart = $userShoppinCart->where('idClothes', $clothes->id)->first() != null;
+            } else {
+                $thisShoppinCart = false;
+            }
+            return view('home.product', [
+                "clothes" => $clothes,
+                "name" => $name->name,
+                "thisFavorites" => $thisFavorites,
+                "thisShoppinCart" => $thisShoppinCart
+            ]);
         } else {
-            $thisShoppinCart = false;
+            return view('home.product', [
+                "clothes" => $clothes,
+                "name" => $name->name,
+            ]);
         }
-
-        return view('home.product', [
-            "clothes" => $clothes,
-            "name" => $name->name,
-            "thisFavorites" => $thisFavorites,
-            "thisShoppinCart" => $thisShoppinCart
-        ]);
     }
 }

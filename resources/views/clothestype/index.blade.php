@@ -10,6 +10,8 @@
 </head>
 
 <body>
+    @include('layouts.testnavigation')
+
     <header>
         <h1>Tipo De Ropa </h1>
         <button> <a href="/newClothesType"> Nueva Tipo de Ropa </a></button>

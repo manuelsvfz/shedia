@@ -12,3 +12,56 @@
     text-decoration: none !important;
     color: black !important;
 }
+
+.containerMain {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 3rem 0;
+}
+
+.containerMain img {
+    width: 30rem;
+    height: 30rem;
+}
+
+.favorites {
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    transition: 0.4s;
+}
+
+.favorites:hover {
+
+    background-color: red;
+    color: white;
+}
+
+.shoppinCart {
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    transition: 0.4s;
+}
+
+.shoppinCart:hover {
+    background-color: lime;
+}
+
+.navegables {
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.navegables:hover {
+    background-color: lightgray;
+}

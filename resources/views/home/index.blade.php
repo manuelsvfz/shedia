@@ -25,7 +25,11 @@
             @endforeach
         @endforeach
     </div>
-    <button class="navigationButton"><a href="../">Volver atrás</a></button>
+    <footer>
+        <button class="navigationButton"><a href="../">Volver atrás</a></button>
+    </footer>
+
+    <x-footer />
 </body>
 
 </html>

@@ -54,6 +54,37 @@ class ClothesController extends Controller
         return redirect()->to('clothes');
     }
 
+    public function editView($id)
+    {
+        $clothes = Clothes::find($id);
+        $clothesType = ClothesType::all();
+        return view('clothes.edit', ['clothes' => $clothes, 'clothesType' => $clothesType]);
+    }
+
+    public function edit(Request $request)
+    {
+        $clothes = Clothes::find($request->id);
+
+        if ($request->size != "nothing") {
+            $clothes->size = $request->size;
+        }
+
+        if ($request->color != "nothing") {
+            $clothes->color = $request->color;
+        }
+
+        $clothes->price = $request->price;
+
+        if ($request->gender != "nothing") {
+            $clothes->gender = $request->gender;
+        }
+
+        if ($request->clotheType_id != "nothing") {
+            $clothes->clotheType_id = $request->clotheType_id;
+        }
+        $clothes->update();
+        return redirect()->to('clothes');
+    }
     /**
      * Display the specified resource.
      */

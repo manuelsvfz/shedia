@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+    @include('layouts.testnavigation')
     <h1>Eliminar Descuento</h1>
     <p>¿Estas seguro de eliminar el descuento{{ $discount->name }}?</p>
     <form action="/deleteDisccount/{{ $discount->id }}" method="GET">

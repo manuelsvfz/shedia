@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    @include('layouts.testnavigation')
 
     <h1>Eliminar Tipo Ropa</h1>
     <p>¿Estas seguro de eliminar el tipo de ropa {{ $clothesType->name }}?</p>

@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+    @include('layouts.testnavigation')
     <h1>Eliminar Usuario</h1>
     <p>¿Estas seguro de eliminar el usuario {{ $user->name }}?</p>
     <form action="/deleteUser/{{ $user->id }}" method="GET">

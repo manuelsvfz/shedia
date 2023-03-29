@@ -10,6 +10,7 @@ use App\Models\ClothesType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use tidy;
 
 class UserController extends Controller
 {
@@ -22,6 +23,19 @@ class UserController extends Controller
         return view('user.index', ['users' => $users]);
     }
 
+
+    public function paymentSuccesful()
+    {
+        if (Auth::user()) {
+            $actualUser = User::findOrFail(Auth::user()->id);
+            $shoppinCart = ShoppincartUser::where('idUser', $actualUser->id)->get();
+            foreach ($shoppinCart as $item) {
+                $item->delete();
+            }
+        }
+
+        return redirect()->to('/');
+    }
 
     public function shoppinCartIndex($idClothes)
     {
@@ -95,6 +109,31 @@ class UserController extends Controller
         return redirect()->to('users');
     }
 
+    public function editView($id)
+    {
+        $user = User::find($id);
+        return view('user.edit', ['user' => $user]);
+    }
+
+    public function edit(Request $request)
+    {
+        var_dump($request->name);
+        var_dump($request->email);
+        $passwordHash = "";
+        if ($request->password != "") {
+            $passwordHash = bcrypt($request->password);
+        }
+
+        $user = User::find($request->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($passwordHash != "") {
+            $user->password = $passwordHash;
+        }
+        $user->isAdmin = $request->isAdmin;
+        $user->update();
+        return redirect()->to('users');
+    }
     /**
      * Display the specified resource.
      */

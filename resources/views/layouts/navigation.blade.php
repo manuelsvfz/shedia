@@ -5,17 +5,17 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="/">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
             </div>
 
             <!-- Settings Dropdown -->
@@ -24,7 +24,14 @@
                     <x-slot name="trigger">
                         <button
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+
+
+                            @if (Auth::user())
+                                <div>{{ Auth::user()->name }}</div>
+                            @else
+                                <div>Invitado</div>
+                            @endif
+
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -38,45 +45,57 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Perfil') }}
-                        </x-dropdown-link>
 
-                        @if (Auth::user()->isAdmin)
+                        @if (Auth::user())
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Gestionar Usuarios') }}
+                                {{ __('Perfil') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Gestionar Ropa') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Gestionar Tipo de Ropa') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Gestionar Descuentos') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Gestionar Datos Bancarios') }}
-                            </x-dropdown-link>
+
+                            @if (Auth::user()->isAdmin)
+                                <x-dropdown-link :href="route('users')">
+                                    {{ __('Gestionar Usuarios') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('clothes')">
+                                    {{ __('Gestionar Ropa') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('clothesType')">
+                                    {{ __('Gestionar Tipo de Ropa') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('descuentos')">
+                                    {{ __('Gestionar Descuentos') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('bankdatas')">
+                                    {{ __('Gestionar Datos Bancarios') }}
+                                </x-dropdown-link>
+                            @else
+                                <x-dropdown-link :href="route('carrito')">
+                                    {{ __('Carrito') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('favorites')">
+                                    {{ __('Favoritos') }}
+                                </x-dropdown-link>
+                            @endif
+
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Cerrar Sesión') }}
+                                </x-dropdown-link>
+                            </form>
                         @else
-                            <x-dropdown-link :href="route('carrito')">
-                                {{ __('Carrito') }}
+                            <x-dropdown-link :href="route('favorites')">
+                                {{ __('Login') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('favorites')">
-                                {{ __('Favoritos') }}
+                                {{ __('Registrar') }}
                             </x-dropdown-link>
                         @endif
 
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
 
-                            <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Cerrar Sesión') }}
-                            </x-dropdown-link>
-                        </form>
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -107,10 +126,18 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
+            @if (Auth::user())
+                <div class="px-4">
+                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                </div>
+            @else
+                <div class="px-4">
+                    <div class="font-medium text-base text-gray-800">Invitado</div>
+
+                </div>
+            @endif
+
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">

@@ -18,6 +18,12 @@ class ClothesTypeController extends Controller
     }
 
 
+    public function editView($id)
+    {
+        $clothesType = ClothesType::find($id);
+        return view('clothestype.edit', ['clothesType' => $clothesType]);
+    }
+
     public function createView()
     {
         return view("clothestype.create");
@@ -37,6 +43,14 @@ class ClothesTypeController extends Controller
         $clothesType = new ClothesType();
         $clothesType->name = $request->name;
         $clothesType->save();
+        return redirect()->to('clothestype');
+    }
+
+    public function edit(Request $request)
+    {
+        $clothesType = ClothesType::find($request->id);
+        $clothesType->name = $request->name;
+        $clothesType->update();
         return redirect()->to('clothestype');
     }
 

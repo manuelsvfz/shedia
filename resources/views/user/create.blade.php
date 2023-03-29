@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    @include('layouts.testnavigation')
     <h1>User</h1>
     <h2>New User</h2>
 

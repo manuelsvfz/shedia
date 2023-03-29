@@ -68,13 +68,13 @@
         <div class="totalContainer">
             <p id="totalFinal"></p>
             <div class="botones">
-                <button class="navigationButton">Comprar</button>
-                <button class="navigationButton"><a href="/">Volver a Inicio</a></button>
+                <a href="/">Volver a Inicio</a>
+                <a href="#" id="comprar">Comprar</a>
             </div>
         </div>
     @else
         <h1>No hay nada añadido al carrito</h1>
-        <button class="navigationButton"><a href="../">Volver a Inicio</a></button>
+        <a href="../">Volver a Inicio</a>
     @endif
 
 
@@ -84,6 +84,7 @@
 
     <script>
         let elements = document.querySelectorAll('.Total');
+        let comprar = document.getElementById('comprar');
         elements.forEach(element => update(element));
 
         function update(e) {
@@ -105,6 +106,7 @@
                 suma += Number(element.innerText.split("€")[0]);
             });
             total.innerText = "Total: " + suma.toFixed(2) + "€";
+            comprar.href = "../stripe?precio=" + suma.toFixed(2);
         }
 
         functionTotal();

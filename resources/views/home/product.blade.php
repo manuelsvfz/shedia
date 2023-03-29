@@ -12,31 +12,42 @@
 
 <body>
     @include('layouts.testnavigation')
-    <div class="container">
-        <img src="{{ $clothes->image }}" alt="" srcset="">
 
-        <h1>{{ $name }}</h1>
-        <p>{{ $clothes->price }}</p>
-        <p>{{ $clothes->color }}</p>
-        <p>{{ $clothes->size }}</p>
-        <p>{{ $clothes->gender }}</p>
+    <div class="containerMain">
+        <img src="{{ $clothes->image }}" alt="" srcset="">
+        <div class="container">
+            <h1>{{ $name }}</h1>
+            <p>{{ $clothes->price }}</p>
+            <p>{{ $clothes->color }}</p>
+            <p>{{ $clothes->size }}</p>
+            <p>{{ $clothes->gender }}</p>
+            @if (Auth::user())
+                <div class="containerMain">
+                    @if (!$thisFavorites)
+                        <a class="favorites" href="/favorites/{{ $clothes->id }}"> Añadir a favoritos</a>
+                    @else
+                        <a class="favorites" href="/favoritesDelete/{{ $clothes->id }}"> Quitar de favoritos</a>
+                    @endif
+                    &nbsp
+
+                    @if (!$thisShoppinCart)
+                        <a class="shoppinCart" href="/shoppinCart/{{ $clothes->id }}"> Añadir al carrito</a>
+                    @else
+                        <a class="shoppinCart" href="/shoppinCartDelete/{{ $clothes->id }}"> Quitar del carrito</a>
+                    @endif
+                </div>
+            @endif
+        </div>
     </div>
 
-    @if (!$thisFavorites)
-        <button> <a href="/favorites/{{ $clothes->id }}"> Añadir a favoritos</a> </button>
-    @else
-        <button> <a href="/favoritesDelete/{{ $clothes->id }}"> Quitar de favoritos</a> </button>
-    @endif
 
+    <div class="containerMain">
+        <a class="navegables" href="/home/{{ $clothes->gender }}">Volver atrás</a>
+        @if (Auth::user())
+            <a class="navegables" href="/user/Favorites">Ir a favoritos</a>
+        @endif
 
-    @if (!$thisShoppinCart)
-        <button> <a href="/shoppinCart/{{ $clothes->id }}"> Añadir al carrito</a> </button>
-    @else
-        <button> <a href="/shoppinCartDelete/{{ $clothes->id }}"> Quitar del carrito</a> </button>
-    @endif
-
-    <button class="navigationButton"><a href="/home/{{ $clothes->gender }}">Volver atrás</a></button>
-    <button class="navigationButton"><a href="/user/Favorites">Ir a favoritos</a></button>
+    </div>
 </body>
 
 </html>

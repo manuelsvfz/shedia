@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    @include('layouts.testnavigation')
     <header>
         <h1>Usuarios </h1>
         <button> <a href="/newUser"> Nuevo usuario</a></button>

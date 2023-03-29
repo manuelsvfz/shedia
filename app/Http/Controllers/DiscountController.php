@@ -28,6 +28,12 @@ class DiscountController extends Controller
         return view('discount.delete', ['discount' => $discount]);
     }
 
+    public function editView($id)
+    {
+        $discount = Discount::find($id);
+        return view('discount.edit', ['discount' => $discount]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -38,6 +44,15 @@ class DiscountController extends Controller
         $discount->name = $request->name;
         $discount->percentageDiscount = $request->percentageDiscount;
         $discount->save();
+        return redirect()->to('discounts');
+    }
+
+    public function edit(Request $request)
+    {
+        $discount = Discount::find($request->id)->first();
+        $discount->name = $request->name;
+        $discount->percentageDiscount = $request->percentageDiscount;
+        $discount->update();
         return redirect()->to('discounts');
     }
 
